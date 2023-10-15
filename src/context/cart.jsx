@@ -1,6 +1,6 @@
 import { useReducer, createContext } from 'react'
 import { getCartItems } from '../services/cart'
-import { ADD_TO_CART, REMOVE_FROM_CART, DECREMENT, CLEAR_CART } from '../reducer/actions/cart'
+import { CART_ACTIONS } from '../reducer/actions'
 
 export const CartContext = createContext()
 
@@ -8,7 +8,7 @@ const initialState = getCartItems()
 const reducer = (state, action) => {
   const { type, payload } = action
   switch (type) {
-    case ADD_TO_CART: {
+    case CART_ACTIONS.ADD_TO_CART: {
       const product = payload
       const index = state.findIndex((item) => item.id === product.id)
       const isInTheCart = index > -1
@@ -22,12 +22,12 @@ const reducer = (state, action) => {
       return newCart
     }
 
-    case REMOVE_FROM_CART: {
+    case CART_ACTIONS.REMOVE_FROM_CART: {
       const productId = payload
       return state.filter((item) => item.id !== productId)
     }
 
-    case DECREMENT: {
+    case CART_ACTIONS.DECREMENT: {
       const productId = payload
       const cartItem = state.find((item) => productId === item.id)
       if (!cartItem) return state
@@ -43,7 +43,7 @@ const reducer = (state, action) => {
       })
     }
 
-    case CLEAR_CART: {
+    case CART_ACTIONS.CLEAR_CART: {
       return []
     }
   }
@@ -53,21 +53,21 @@ export function CartProvider ({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const addToCart = (product) => dispatch({
-    type: ADD_TO_CART,
+    type: CART_ACTIONS.ADD_TO_CART,
     payload: product
   })
 
   const removeFromCart = (productId) => dispatch({
-    type: REMOVE_FROM_CART,
+    type: CART_ACTIONS.REMOVE_FROM_CART,
     payload: productId
   })
 
   const decrementQuantity = (productId) => dispatch({
-    type: DECREMENT,
+    type: CART_ACTIONS.DECREMENT,
     payload: productId
   })
 
-  const clearCart = () => dispatch({ type: CLEAR_CART })
+  const clearCart = () => dispatch({ type: CART_ACTIONS.CLEAR_CART })
 
   return (
     <CartContext.Provider value={{
