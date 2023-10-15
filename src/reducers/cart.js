@@ -1,5 +1,5 @@
-import { getCartItems } from '../../services/cart'
-import { CART_ACTIONS } from '../actions'
+import { getCartItems } from '../services/cart'
+import { CART_ACTIONS } from './actions/actions'
 
 export const cartInitialState = getCartItems()
 export const cartReducer = (state, action) => {

@@ -1,6 +1,6 @@
 import { useReducer } from 'react'
-import { CART_ACTIONS } from '../reducers/actions'
-import { cartReducer, cartInitialState } from '../reducers/actions/cart'
+import { CART_ACTIONS } from '../reducers/actions/actions'
+import { cartReducer, cartInitialState } from '../reducers/cart'
 
 export function useCartReducer () {
   const [state, dispatch] = useReducer(cartReducer, cartInitialState)
