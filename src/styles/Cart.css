@@ -1,0 +1,127 @@
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  width: 300px;
+  max-width: 400px;
+  position: fixed;
+  right: 0; 
+  top: 0;
+  z-index: 9999;
+}
+
+.open-cart-button {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  margin: .5rem .5rem;
+  background: rgb(93, 123, 141);
+  border-radius: 100%;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.cart-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  padding: .2rem;
+  position: absolute;
+  top: 0;
+  left: -.5rem;
+  background: #ff5900;
+  border-radius: 100%;
+}
+
+.open-cart-button:hover {
+  transform: scale(1.1);
+}
+
+.open-cart-button + input {
+  display: none;
+}
+
+.cart {
+  position: fixed;
+  width: 300px;
+  top: 80px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+  border-radius: 1rem 0 0 1rem;
+  background: rgba(10, 15, 20, 0.7);
+  backdrop-filter: blur(8px);
+  transform: translateX(100%);
+  transition: .2s transform;
+}
+
+.open-cart-button + input:checked + .cart {
+  transform: translateX(0%);
+}
+
+.cart-list {
+  display: flex;
+  max-height: 600px;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+  padding: 1rem;
+  overflow: auto;
+}
+
+.cart-item * {
+  padding: 0;
+  margin: 0;
+}
+
+.cart-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #fff;
+}
+
+.cart-item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.cart-item-actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-item-actions button {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  margin: 0;
+  background: var(--selection);
+}
+
+.btn-clear-cart {
+  margin: 0;
+  background-color: rgba(255, 0, 0, .5);
+  align-self: center;
+}
